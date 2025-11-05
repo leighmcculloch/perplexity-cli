@@ -17,11 +17,13 @@ async function streamFromPerplexity(question: string): Promise<void> {
 
     for await (const chunk of stream) {
       if (chunk.done) {
-        console.log(); // Add newline after streaming completes
         break;
       }
       Deno.stdout.write(new TextEncoder().encode(chunk.content));
     }
+
+    console.log();
+    console.log();
   } catch (error) {
     console.error("? Error:", error instanceof Error ? error.message : String(error));
   }
@@ -37,6 +39,7 @@ export async function startInteractiveMode(): Promise<void> {
 
   while (true) {
     const input = await getUserInput();
+    console.log();
 
     if (input === null) {
       // User pressed Ctrl+C or input stream ended
