@@ -48,47 +48,8 @@ deno run --allow-net --allow-env main.ts "What is the capital of France?"
 
 Pass your question directly as command arguments for immediate processing.
 
-## Example Session
-
-```
-?? Welcome to Perplexity CLI! Type your questions and press Enter.
-?? Use ?/? arrows to navigate history, Ctrl+C to exit.
-
-? What is machine learning?
-
-?? What is machine learning?
-
-Machine learning is a subset of artificial intelligence (AI) that focuses on the development of algorithms and statistical models that enable computers to perform specific tasks without being explicitly programmed for each task. Instead, these systems learn from data and improve their performance over time through experience.
-
-The core idea is that machines can learn patterns from data and make predictions or decisions based on that learning, rather than following pre-written rules for every possible scenario.
-
-? Tell me about neural networks
-
-?? Tell me about neural networks
-
-Neural networks are computational models inspired by the structure and function of biological neural networks in the human brain. They consist of interconnected nodes (neurons) organized in layers that process and transmit information.
-
-[response continues streaming...]
-```
-
 ## Requirements
 
 - Deno v2 or later
 - Perplexity API key (get one at [perplexity.ai/settings/api](https://www.perplexity.ai/settings/api))
 - Network access for API calls
-
-## Permissions
-
-The CLI requires the following Deno permissions:
-- `--allow-net`: For making HTTP requests to the Perplexity API
-- `--allow-env`: For reading the PERPLEXITY_API_KEY environment variable
-
-## Development
-
-The project structure:
-
-- `main.ts`: CLI entry point and argument parsing
-- `cli.ts`: Interactive UI logic and prompt handling
-- `perplexity.ts`: Perplexity API integration with streaming support
-- `deno.json`: Project configuration and dependencies
->>>>>>> 5b20a10 (Initial)

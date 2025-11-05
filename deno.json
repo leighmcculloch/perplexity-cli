@@ -1,5 +1,5 @@
 {
-  "name": "perplexity-cli",
+  "name": "@leigh/perplexity-cli",
   "version": "1.0.0",
   "exports": "./main.ts",
   "imports": {
