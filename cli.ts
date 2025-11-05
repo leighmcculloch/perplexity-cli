@@ -34,16 +34,13 @@ async function streamFromPerplexity(question: string): Promise<void> {
  * Start the interactive CLI mode
  */
 export async function startInteractiveMode(): Promise<void> {
-  console.log("?? Welcome to Perplexity CLI! Type your questions and press Enter.");
-  console.log("?? Use ?/? arrows to navigate history, Ctrl+C to exit.\n");
-
   while (true) {
     const input = await getUserInput();
     console.log();
 
     if (input === null) {
       // User pressed Ctrl+C or input stream ended
-      console.log("\n?? Goodbye!");
+      console.log("\n👋 Goodbye!");
       break;
     }
 
@@ -68,7 +65,7 @@ export async function startInteractiveMode(): Promise<void> {
  */
 async function processPrompt(question: string): Promise<void> {
   isStreaming = true;
-
+  Deno.stdout.write(new TextEncoder().encode("🤖 "));
   try {
     await streamFromPerplexity(question);
   } finally {
@@ -92,7 +89,7 @@ class InputReader {
 
   async readInput(): Promise<string | null> {
     // Display prompt
-    Deno.stdout.write(new TextEncoder().encode("? "));
+    Deno.stdout.write(new TextEncoder().encode("❓ "));
 
     try {
       // If we have buffered input, use it first
