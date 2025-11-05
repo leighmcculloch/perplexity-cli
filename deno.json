@@ -1,0 +1,8 @@
+{
+  "name": "perplexity-cli",
+  "version": "1.0.0",
+  "exports": "./main.ts",
+  "imports": {
+    "@cliffy/command": "jsr:@cliffy/command@^1.0.0-rc.7"
+  }
+}
