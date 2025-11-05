@@ -1,12 +1,23 @@
-// Perplexity API integration
+/**
+ * Perplexity API integration for streaming chat completions
+ */
+
 const PERPLEXITY_API_URL = "https://api.perplexity.ai/chat/completions";
 const API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
 
+/**
+ * Represents a chunk of streaming response data
+ */
 export interface StreamChunk {
   content: string;
   done: boolean;
 }
 
+/**
+ * Stream responses from Perplexity API
+ * @param params.messages - Array of conversation messages
+ * @returns Async generator yielding response chunks
+ */
 export async function* perplexity_stream_ask(params: {
   messages: Array<{ role: string; content: string }>;
 }): AsyncGenerator<StreamChunk> {
@@ -72,32 +83,4 @@ export async function* perplexity_stream_ask(params: {
   } finally {
     reader.releaseLock();
   }
-}
-
-export async function perplexity_perplexity_ask(params: {
-  messages: Array<{ role: string; content: string }>;
-}): Promise<any> {
-  if (!API_KEY) {
-    throw new Error("PERPLEXITY_API_KEY environment variable is required. Get one at https://www.perplexity.ai/settings/api");
-  }
-
-  const response = await fetch(PERPLEXITY_API_URL, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "sonar-pro",
-      messages: params.messages,
-      stream: false,
-    }),
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Perplexity API error: ${response.status} ${error}`);
-  }
-
-  return await response.json();
 }
