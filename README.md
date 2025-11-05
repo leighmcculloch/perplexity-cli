@@ -28,10 +28,16 @@ A command-line interface for interacting with Perplexity AI, built with Deno v2.
 
 ## Usage
 
+### Install
+
+```bash
+deno install --global --allow-env=PERPLEXITY_API_KEY --allow-net=api.perplexity.ai:443 jsr:@leigh/perplexity-cli
+```
+
 ### Interactive Mode
 
 ```bash
-deno run --allow-net --allow-env jsr:@leigh/perplexity-cli
+perplexity-cli
 ```
 
 This starts an interactive session where you can:
@@ -43,7 +49,7 @@ This starts an interactive session where you can:
 ### Direct Question Mode
 
 ```bash
-deno run --allow-net --allow-env jsr:@leigh/perplexity-cli "What is the capital of France?"
+perplexity-cli What is the capital of France?
 ```
 
 Pass your question directly as command arguments for immediate processing.
